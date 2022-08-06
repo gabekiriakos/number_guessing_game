@@ -22,12 +22,15 @@ class Game:
             print("Hint: The number is less than {}" .format(answer))
 
     def guess_wrong(self):
+        print("Wrong! Try again!")
         if self.score != 0:
             self.score -= 1
 
     def guess_correct(self):
         self.is_playing_game = False
-        print("Correct! Your score is {}" .format(self.score))
+        print("Correct! The number was {}." .format(self.random_number))
+        print("Your score is {}" .format(self.score))
+        print("Thank you for playing!")
     
     def clear(self):
         if name == 'nt':
@@ -39,7 +42,6 @@ if __name__ == '__main__':
 
     game = Game()
     random_num = game.get_random_number()
-    answer_count = 0
 
     print("Let's play a game!")
     print("Guess a number between 1 and 100:")
@@ -55,13 +57,8 @@ if __name__ == '__main__':
 
         game.clear()
         if answer != random_num:
-            print("Wrong! Try again!")
-            game.guess_wrong()
-            if answer_count > 1:
-                game.give_hint(answer)
+            game.give_hint(answer)
         else:
             game.guess_correct()
-        
-        answer_count += 1
 
     input("Press [ENTER] to exit.")
