@@ -1,12 +1,6 @@
 import random
 from os import system, name
 
-def clear():
-    if name == 'nt':
-        _ = system('cls') # windows
-    else:
-        _ = system('clear') # linux, mac
-
 class Game:
     # constructor
     def __init__(self):
@@ -26,6 +20,12 @@ class Game:
     def guess_correct(self):
         self.is_playing_game = False
         print("Correct! Your score is {}" .format(self.score))
+    
+    def clear(self):
+        if name == 'nt':
+            _ = system('cls') # windows
+        else:
+            _ = system('clear') # linux, mac
 
 if __name__ == '__main__':
 
@@ -40,11 +40,11 @@ if __name__ == '__main__':
         try:
             answer = int(input("What is your answer? "))
         except ValueError:
-            clear()
+            game.clear()
             print("Please enter a NUMBER")
             continue
 
-        clear()
+        game.clear()
         if answer != random_num:
             game.guess_wrong()
         else:
