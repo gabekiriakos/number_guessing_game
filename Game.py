@@ -6,16 +6,24 @@ class Game:
     def __init__(self):
         self.score = 10
         self.is_playing_game = True
+        self.random_number = random.randint(1, 100)
 
     def in_game(self):
         return self.is_playing_game
 
+    def get_random_number(self):
+        return self.random_number
+
+    def give_hint(self, answer):
+        self.guess_wrong()
+        if self.random_number > answer:
+            print("Hint: The number is greater than {}" .format(answer))
+        else:
+            print("Hint: The number is less than {}" .format(answer))
+
     def guess_wrong(self):
-        print("Wrong! Try again!")
         if self.score != 0:
             self.score -= 1
-        else:
-            pass # allows null return w/o error
 
     def guess_correct(self):
         self.is_playing_game = False
@@ -30,10 +38,11 @@ class Game:
 if __name__ == '__main__':
 
     game = Game()
-    random_num = random.randint(1, 10)
+    random_num = game.get_random_number()
+    answer_count = 0
 
     print("Let's play a game!")
-    print("Guess a number between 1 and 10:")
+    print("Guess a number between 1 and 100:")
     input("Press [ENTER] to continue.")
 
     while game.in_game():
@@ -46,8 +55,13 @@ if __name__ == '__main__':
 
         game.clear()
         if answer != random_num:
+            print("Wrong! Try again!")
             game.guess_wrong()
+            if answer_count > 1:
+                game.give_hint(answer)
         else:
             game.guess_correct()
+        
+        answer_count += 1
 
     input("Press [ENTER] to exit.")
