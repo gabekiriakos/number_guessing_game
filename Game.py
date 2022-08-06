@@ -17,7 +17,7 @@ class Game:
         return self.is_playing_game
 
     def guess_wrong(self):
-        input("Wrong! Press [ENTER] to try again!")
+        print("Wrong! Try again!")
         if self.score != 0:
             self.score -= 1
         else:
@@ -31,6 +31,7 @@ if __name__ == '__main__':
 
     game = Game()
     random_num = random.randint(1, 10)
+
     print("Let's play a game!")
     print("Guess a number between 1 and 10:")
     input("Press [ENTER] to continue.")
@@ -42,11 +43,11 @@ if __name__ == '__main__':
             clear()
             print("Please enter a NUMBER")
             continue
+
+        clear()
         if answer != random_num:
-            clear()
             game.guess_wrong()
         else:
-            clear()
             game.guess_correct()
 
     input("Press [ENTER] to exit.")
