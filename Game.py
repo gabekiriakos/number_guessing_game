@@ -14,12 +14,12 @@ class Game:
     def get_random_number(self):
         return self.random_number
 
-    def give_hint(self, answer):
+    def give_hint(self, guess):
         self.guess_wrong()
-        if self.random_number > answer:
-            print("Hint: The number is greater than {}" .format(answer))
+        if self.random_number > guess:
+            print("Hint: The number is greater than {}" .format(guess))
         else:
-            print("Hint: The number is less than {}" .format(answer))
+            print("Hint: The number is less than {}" .format(guess))
 
     def guess_wrong(self):
         print("Wrong! Try again!")
@@ -41,7 +41,7 @@ class Game:
 if __name__ == '__main__':
 
     game = Game()
-    random_num = game.get_random_number()
+    correct_guess = game.get_random_number()
 
     print("Let's play a game!")
     print("Guess a number between 1 and 100:")
@@ -49,15 +49,15 @@ if __name__ == '__main__':
 
     while game.in_game():
         try:
-            answer = int(input("What is your answer? "))
+            guess = int(input("What is your guess? "))
         except ValueError:
             game.clear()
             print("Please enter a NUMBER")
             continue
 
         game.clear()
-        if answer != random_num:
-            game.give_hint(answer)
+        if guess != correct_guess:
+            game.give_hint(guess)
         else:
             game.guess_correct()
 
